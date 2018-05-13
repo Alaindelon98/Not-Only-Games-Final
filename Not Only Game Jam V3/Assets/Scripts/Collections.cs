@@ -51,7 +51,7 @@ public enum S_TommyState
     Bullying
 }
 
-public enum S_GameState
+/*public enum S_GameState
 {
     ExitPlayGround,
     StartPlayGround,
@@ -60,7 +60,7 @@ public enum S_GameState
     EndGame,
     Tutorial
 
-}
+}*/
 public enum s_PhoneState
 {
     TakingPicture,

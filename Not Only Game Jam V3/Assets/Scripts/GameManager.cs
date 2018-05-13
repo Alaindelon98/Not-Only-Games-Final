@@ -4,29 +4,91 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public S_GameState m_currentState;
+    
     [SerializeField] private Manager I_manager;
 
-	// Use this for initialization
-	void Start () {
-		
+
+    public enum S_GameStates
+    {
+        Play,
+        ChangeDay,
+        EndGame
+    }
+    public S_GameStates m_currentState;
+
+    public enum S_Days
+    {
+        Fall, FootTrip, Beating, Gone 
+    }
+    public S_Days m_currentDay;
+
+
+
+
+
+    // Use this for initialization
+    void Start () {
+        m_currentState = S_GameStates.Play;
+        m_currentDay = S_Days.Fall;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        StateMachine();
+        //StateMachine();
 
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
             ChangeState(m_currentState, S_GameState.StartPlayGround);
         }
         if (Input.GetMouseButtonDown(0))
         {
             ChangeState(m_currentState, S_GameState.ExitPlayGround);
+        }*/
+    }
+
+
+    private void FiniteStateMachine() {
+
+        switch (m_currentState)
+        {
+            case S_GameStates.Play:
+
+                break;
+
+            case S_GameStates.ChangeDay:
+                break;
+
+            case S_GameStates.EndGame:
+                break;
+
         }
     }
 
-    private void StateMachine()
+    public void ChangeGameState(S_GameStates m_newState)
+    {
+        switch (m_newState)
+        {
+            case S_GameStates.Play:
+                break;
+
+            case S_GameStates.ChangeDay:
+
+                //Everybody have to look to the mobile
+
+                //Exit playground
+
+                m_currentDay++;
+
+                break;
+
+            case S_GameStates.EndGame:
+                break;
+
+        }
+
+    }
+
+    /*private void StateMachine()
     {
         switch (m_currentState)
         {
@@ -55,9 +117,9 @@ public class GameManager : MonoBehaviour {
                 break;
 
         }
-    }
+    }*/
 
-    public void ChangeState(S_GameState currentState, S_GameState nextState)
+    /*public void ChangeState(S_GameState currentState, S_GameState nextState)
     {
         switch(currentState)
         {
@@ -119,5 +181,5 @@ public class GameManager : MonoBehaviour {
 
         }
         m_currentState = nextState;
-    }
+    }*/
 }

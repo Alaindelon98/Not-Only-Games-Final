@@ -7,6 +7,8 @@ public class EventDetector : MonoBehaviour {
     [SerializeField] private ScreenShot m_screenShot;
     [SerializeField] private John m_mainCharacter;
 
+    public GameManager gm;
+
     //TEMP TEMP TEMP
     public bool bullied;
     //END OF TEMP
@@ -44,9 +46,10 @@ public class EventDetector : MonoBehaviour {
             if(_collider.tag == "MainCharacter")
             {
                 //if (m_mainCharacter.m_currentState == S_JohnState.BullyAction && m_mainCharacter.m_sufferingBulling)
-                if (m_mainCharacter.m_currentState == S_JohnState.BullyAction && bullied)
+                if (bullied)
                 {
-                    Debug.Log("being bullied");
+                    Debug.Log("being bullied, change day");
+                    gm.ChangeGameState(GameManager.S_GameStates.ChangeDay);
                 }
             }
             else if (_collider.tag == "Kid")
