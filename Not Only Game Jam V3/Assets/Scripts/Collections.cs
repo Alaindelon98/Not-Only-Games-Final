@@ -7,16 +7,48 @@
     RunAway,
     BullyActionIndividual,
     BullyActionGroupal,
-    LookAtSmartphone
+    LookAtSmartphone,
 }
-public enum S_JohnState
+
+public enum S_ActorAnimations
 {
     Idle,
-    Patrol,
-    MoveTowards,
-    DefaultAction,
-    RunAway,
-    BullyAction
+
+    Walk,
+
+    Kick,
+
+    FoodTrap,
+
+    Fight
+}
+
+public enum S_TommyAnimations
+{
+    Idle0,
+    Idle1,
+    Idle2,
+
+    Walk0,
+    Walk1,
+    Walk2,
+
+    Fall,
+
+    Dirty,
+
+    Kick,
+
+    FoodTrap,
+
+    Fight
+}
+
+public enum S_TommyState
+{
+    Idle,
+    Walk,
+    Bullying
 }
 
 public enum S_GameState

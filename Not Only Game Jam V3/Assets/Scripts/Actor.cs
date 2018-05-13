@@ -24,6 +24,8 @@ public class Actor : MonoBehaviour {
 
     private float vAux_currentTime;
     private float m_cooldownNewRandomPosition;
+    private int m_currentAnimationIndex;
+    private Animation m_currentAnimation;
 
     // Use this for initialization
     void Start () {
@@ -42,21 +44,20 @@ public class Actor : MonoBehaviour {
 
 
 	}
-
     private void StateMachine()
     {
-        switch(m_currentState)
+        switch (m_currentState)
         {
             case S_ActorState.Idle:
                 break;
             case S_ActorState.MoveTowards: //Characters walks around
 
-                if(m_newDestination != null)
+                if (m_newDestination != null)
                 {
                     Move();
                 }
-                if(this.transform.position == m_newDestination && this.transform.position != m_waitingPoint.position) 
-                    //checks if has arrived to the destination and gives a new one unless it's resting
+                if (this.transform.position == m_newDestination && this.transform.position != m_waitingPoint.position)
+                //checks if has arrived to the destination and gives a new one unless it's resting
                 {
                     if (vAux_currentTime >= m_cooldownNewRandomPosition)
                     {
@@ -70,18 +71,27 @@ public class Actor : MonoBehaviour {
                     }
 
                 }
-                
+
 
                 break;
             case S_ActorState.LookAtSmartPhone:
                 break;
             case S_ActorState.BullyActionIndividual:
-                if(this.transform.position != m_newDestination)
+                if (this.transform.position != m_newDestination)
                 {
                     Move();
                 }
                 else
                 {
+                    if (I_john.m_currentAnimationIndex == (int)S_TommyAnimations.FoodTrap)
+                    {
+                        ChangeAnimation((int)S_ActorAnimations.FoodTrap);
+                    }
+                    else if (I_john.m_currentAnimationIndex == (int)S_TommyAnimations.Kick)
+                    {
+                        ChangeAnimation((int)S_ActorAnimations.Kick);
+                    }
+
                     //DO ANIMATION
                     //START ANIMATION OF THE PLAYER
                 }
@@ -93,28 +103,34 @@ public class Actor : MonoBehaviour {
                 }
                 else
                 {
-                    //DO ANIMATION OF ALL SONS
-                    //START ANIMATION OF THE PLAYER
+                    ChangeAnimation((int)S_ActorAnimations.Fight);
+
                 }
                 break;
             case S_ActorState.LookAtSmartphone:
                 //ANIMACION MIRAR AL TFNO
 
+
                 //QUAN SACABI LANIMACIO
-                ChangeState(m_currentState, S_ActorState.MoveTowards);
+                if (!m_currentAnimation.isPlaying)
+                {
+                    ChangeState(m_currentState, S_ActorState.MoveTowards);
+                }
                 break;
+
+
         }
     }
 
     public void ChangeState(S_ActorState currentState, S_ActorState nextState)
     {
-        switch(currentState)
+        switch (currentState)
         {
             case S_ActorState.Idle:
-                switch(nextState)
+                switch (nextState)
                 {
                     case S_ActorState.MoveTowards:
-                            GetRandomDestination();
+                        GetRandomDestination();
                         break;
                 }
                 break;
@@ -128,17 +144,20 @@ public class Actor : MonoBehaviour {
                     case S_ActorState.RunAway:
                         break;
                     case S_ActorState.BullyActionIndividual:
-                        m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z); 
+                        m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z);
                         break;
                     case S_ActorState.BullyActionGroupal:
                         m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z);
                         break;
+                    case S_ActorState.LookAtSmartPhone:
+                        ChangeAnimation((int)S_ActorAnimations.LookAtSmartphones);
+                        break;
                 }
                 break;
 
-           
+
             case S_ActorState.BullyActionIndividual:
-                switch(nextState)
+                switch (nextState)
                 {
                     case S_ActorState.RunAway:
                         break;
@@ -157,7 +176,7 @@ public class Actor : MonoBehaviour {
                 break;
 
             case S_ActorState.LookAtSmartphone:
-                switch(nextState)
+                switch (nextState)
                 {
                     case S_ActorState.MoveTowards:
                         m_newDestination = m_waitingPoint.position;
@@ -201,7 +220,7 @@ public class Actor : MonoBehaviour {
         }
         else if (I_john.transform.position == m_newDestination)
         {
-            if (I_john.m_currentState == S_JohnState.DefaultAction || I_john.m_currentState == S_JohnState.BullyAction)
+            if (I_john.m_currentAnimState == S_TommyAnimations.DefaultAction || I_john.m_currentAnimState == S_TommyAnimations.BullyAction)
             {
                 GetRandomDestination();
             }
@@ -214,31 +233,21 @@ public class Actor : MonoBehaviour {
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, m_newDestination, m_speed * Time.deltaTime);
 
-        if(m_newDestination.x < this.transform.position.x && this.transform.localScale.x > 0)
+        if (m_newDestination.x < this.transform.position.x && this.transform.localScale.x > 0)
         {
-            this.transform.localScale = new Vector3(this.transform.localScale.x*-1, 1, 1);
+            this.transform.localScale = new Vector3(this.transform.localScale.x * -1, 1, 1);
         }
-        else if(m_newDestination.x > this.transform.position.x && this.transform.localScale.x < 0)
+        else if (m_newDestination.x > this.transform.position.x && this.transform.localScale.x < 0)
         {
             this.transform.localScale = new Vector3(this.transform.localScale.x * -1, 1, 1);
 
         }
     }
 
-    private void ChangeAnimation()
+    private void ChangeAnimation(int index)
     {
-        switch(m_currentState)
-        {
-            case S_ActorState.Idle:
-                break;
-            case S_ActorState.MoveTowards:
-                break;
-            case S_ActorState.BullyActionIndividual:
-                break;
-            case S_ActorState.LookAtSmartphone:
-                break;
-            case S_ActorState.BullyActionGroupal:
-                break;
-        }
+        m_currentAnimationIndex = index;
+        m_currentAnimation.clip = m_animations[m_currentAnimationIndex];
+        m_currentAnimation.Play();
     }
 }
