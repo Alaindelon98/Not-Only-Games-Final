@@ -9,6 +9,8 @@ public class Actor : MonoBehaviour {
     public Vector3 m_newDestination;
 
     public bool m_isTheBully;
+    public bool m_isGroup;
+
 
     [SerializeField] private Vector2 m_cooldownRandomRange;
     [SerializeField] private float m_speed;
@@ -77,15 +79,39 @@ public class Actor : MonoBehaviour {
                 break;
 
             case S_ActorState.Bullying:
-                if(Vector3.Distance(this.transform.position, I_john.transform.position) <= 1f)
+
+                if((int)I_gameManager.m_currentDay == 1)
                 {
-                    //change animation
+                    if (Vector3.Distance(this.transform.position, I_john.transform.position) <= 3f)
+                    {
+                        //change animation
+                        ChangeState(S_ActorState.Walk);
+                        print("I've chganded");
+                    }
+                    else
+                    {
+                        m_newDestination = I_john.transform.position;
+                        Move();
+                    }
                 }
-                else
+                else if((int)I_gameManager.m_currentDay ==2 && m_isTheBully)
                 {
-                    m_newDestination = I_john.transform.position;
-                    Move();
+                    ChangeState(S_ActorState.Walk);
                 }
+                else if((int)I_gameManager.m_currentDay == 2 && m_isGroup)
+                {
+                    if (Vector3.Distance(this.transform.position, I_john.transform.position) <= 3f)
+                    {
+                        //change animation
+                        ChangeState(S_ActorState.Walk);
+                    }
+                    else
+                    {
+                        m_newDestination = I_john.transform.position;
+                        Move();
+                    }
+                }
+
 
 
                 break;

@@ -27,6 +27,8 @@ public class John : MonoBehaviour {
     [SerializeField] private TheGrid I_grid;
     [SerializeField] private EventDetector I_eventDetector;
 
+    [SerializeField] private Animator m_animator;
+
     [SerializeField] private AnimationClip A_walk0;
     [SerializeField] private AnimationClip A_walk1;
     [SerializeField] private AnimationClip A_walk2;
@@ -40,11 +42,13 @@ public class John : MonoBehaviour {
     [SerializeField] private AnimationClip A_fight;
 
 
-
-
+    public float m_bullyTimer = 3f;
     public bool m_sufferingBulling = false;
+
     private float vAux_currentTime;
     private float vAux_currentTime2;
+    private float vAux_currentTime3;
+
 
     private bool m_pictureHasBeenTaken;
     private float m_cooldownNewRandomPosition;
@@ -102,10 +106,19 @@ public class John : MonoBehaviour {
                 break;
             case S_TommyState.Bullying:
 
-                if(m_pictureHasBeenTaken) // poner que tambien se ejecute cuando se acaba la animacion
+
+                print(I_gameManager.m_currentDay);
+
+                if (m_bullyTimer <= vAux_currentTime3) // poner que tambien se ejecute cuando se acaba la animacion
                 {
                     ChangeState(S_TommyState.Walk);
                     m_pictureHasBeenTaken = false;
+                    vAux_currentTime3 = 0f;
+
+                }
+                else
+                {
+                    vAux_currentTime3 += Time.deltaTime;
                 }
 
 
@@ -113,12 +126,15 @@ public class John : MonoBehaviour {
                 if ((int)I_gameManager.m_currentDay == 0)//cambiar por dia
                 {
                     //animacion trabanqueta
-
+                    //m_animator.SetBool("walk", true);
+                    m_sufferingBulling = true;
 
                 }
                 else if((int)I_gameManager.m_currentDay == 1)
                 {
                     //animacion 2
+                    m_sufferingBulling = true;
+
                 }
                 else if((int)I_gameManager.m_currentDay == 2)
                 {
@@ -130,6 +146,12 @@ public class John : MonoBehaviour {
                         m_sufferingBulling = true;
 
                     }
+                }
+
+                else if(((int)I_gameManager.m_currentDay == 3))
+                {
+                    m_newDestination = new Vector3(100, 7, 0);
+
                 }
 
                 //ChangeAnimation(m_currentAnimationIndex);
@@ -189,7 +211,7 @@ public class John : MonoBehaviour {
                     case S_TommyState.Walk:
 
                         //decide which animation you have to take depending on the day
-
+                        GetRandomDestination();
                         m_currentState = l_nextState;
                         break;
                 }
