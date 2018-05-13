@@ -16,6 +16,7 @@ public class John : MonoBehaviour {
     public S_TommyAnimations m_currentAnimState;
     public S_TommyState m_currentState;
     public Vector3 m_newDestination;
+    public AudioSource tensionAudio;
 
     [Space(30)]
     [SerializeField]
@@ -139,6 +140,7 @@ public class John : MonoBehaviour {
                 else if((int)I_gameManager.m_currentDay == 2)
                 {
 
+                    tensionAudio.Play();
                     m_groupOfActors.transform.position = Vector3.MoveTowards(m_groupOfActors.transform.position, m_waitingPoint.position, m_speed * Time.deltaTime);
                     if (m_groupOfActors.transform.position == this.transform.position)
                     {
