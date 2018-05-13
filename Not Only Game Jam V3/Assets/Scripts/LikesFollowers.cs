@@ -18,7 +18,7 @@ public class LikesFollowers : MonoBehaviour
     void Start()
     {
         likesNum = 0;
-        followersNum = 0;
+        followersNum = 17;
 
         likesText.text = likesNum.ToString() + " Likes";
         followersText.text = followersNum.ToString() + " Following";
