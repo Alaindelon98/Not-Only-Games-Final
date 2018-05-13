@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114453078812885970}
   - component: {fileID: 61879619519065236}
   m_Layer: 0
-  m_Name: Tommy
+  m_Name: MainCharacter
   m_TagString: MainCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
