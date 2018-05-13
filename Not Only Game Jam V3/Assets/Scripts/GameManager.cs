@@ -15,7 +15,16 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         StateMachine();
-	}
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            ChangeState(m_currentState, S_GameState.StartPlayGround);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            ChangeState(m_currentState, S_GameState.ExitPlayGround);
+        }
+    }
 
     private void StateMachine()
     {
@@ -27,12 +36,15 @@ public class GameManager : MonoBehaviour {
                 break;
 
             case S_GameState.Tutorial:
-
+                if(!I_manager.I_cat.enabled)
+                {
+                    ChangeState(m_currentState, S_GameState.EndGame);
+                }
                 break;
 
             case S_GameState.ActorsMakeActions:
                 //cuando la animacion de mirar al telefono se haya aacabado
-                ChangeState(m_currentState, S_GameState.ExitPlayGround);
+                ChangeState(m_currentState, S_GameState.StartPlayGround);
 
                 break;
             case S_GameState.ExitPlayGround:
@@ -47,13 +59,18 @@ public class GameManager : MonoBehaviour {
 
     public void ChangeState(S_GameState currentState, S_GameState nextState)
     {
-        switch(nextState)
+        switch(currentState)
         {
             case S_GameState.ActorsMakeActions:
+                switch(nextState)
+                {
+                    case S_GameState.ExitPlayGround:
+                        break;
+                }
                 break;
                
             case S_GameState.ExitPlayGround:
-                switch (currentState)
+                switch (nextState)
                 {
                     case S_GameState.StartPlayGround:
 
@@ -81,11 +98,24 @@ public class GameManager : MonoBehaviour {
                 switch (currentState)
                 {
                     case S_GameState.Tutorial:
-
+                        
 
                         break;
                 }
                 break;
+
+            case S_GameState.Tutorial:
+                {
+                    switch(currentState)
+                    {
+                        case S_GameState.StartPlayGround:
+                            I_manager.AllActorsGoPlayGround();
+
+                            break;
+                    }
+                }
+                    break;
+
 
         }
         m_currentState = nextState;

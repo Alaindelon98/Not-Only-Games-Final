@@ -9,23 +9,25 @@ public class Actor : MonoBehaviour {
     public Vector3 m_newDestination;
 
 
-
+    [SerializeField] private Vector2 m_cooldownRandomRange;
     [SerializeField] private float m_speed;
+    [Space(30)]
     [SerializeField] private TheGrid I_grid;
     [SerializeField] private John I_john;
     [SerializeField] private GameManager I_gameManager;
     [SerializeField] private Manager I_manager;
+    [SerializeField] private List<Actor> L_actors = new List<Actor>();
+
 
     [SerializeField] private Transform m_waitingPoint;
 
-    private List<Actor> L_actors = new List<Actor>();
 
     private float vAux_currentTime;
     private float m_cooldownNewRandomPosition;
 
     // Use this for initialization
     void Start () {
-		L_actors = I_manager.L_actors;
+
     }
 	
 	// Update is called once per frame
@@ -51,7 +53,7 @@ public class Actor : MonoBehaviour {
 
                 if(m_newDestination != null)
                 {
-                    this.transform.position = Vector3.MoveTowards(this.transform.position, m_newDestination, m_speed * Time.deltaTime);
+                    Move();
                 }
                 if(this.transform.position == m_newDestination && this.transform.position != m_waitingPoint.position) 
                     //checks if has arrived to the destination and gives a new one unless it's resting
@@ -60,6 +62,7 @@ public class Actor : MonoBehaviour {
                     {
                         GetRandomDestination();
                         vAux_currentTime = 0f;
+                        m_cooldownNewRandomPosition = Random.Range(m_cooldownRandomRange.x, m_cooldownRandomRange.y);
                     }
                     else
                     {
@@ -75,7 +78,7 @@ public class Actor : MonoBehaviour {
             case S_ActorState.BullyActionIndividual:
                 if(this.transform.position != m_newDestination)
                 {
-                    this.transform.position = Vector3.MoveTowards(this.transform.position, m_newDestination, m_speed * Time.deltaTime);
+                    Move();
                 }
                 else
                 {
@@ -86,7 +89,7 @@ public class Actor : MonoBehaviour {
             case S_ActorState.BullyActionGroupal:
                 if (this.transform.position != m_newDestination)
                 {
-                    this.transform.position = Vector3.MoveTowards(this.transform.position, m_newDestination, m_speed * Time.deltaTime);
+                    Move();
                 }
                 else
                 {
@@ -126,7 +129,9 @@ public class Actor : MonoBehaviour {
                         break;
                     case S_ActorState.BullyActionIndividual:
                         m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z); 
-
+                        break;
+                    case S_ActorState.BullyActionGroupal:
+                        m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z);
                         break;
                 }
                 break;
@@ -205,5 +210,35 @@ public class Actor : MonoBehaviour {
         m_newDestination = l_node.position;
     }
 
+    private void Move()
+    {
+        this.transform.position = Vector3.MoveTowards(this.transform.position, m_newDestination, m_speed * Time.deltaTime);
 
+        if(m_newDestination.x < this.transform.position.x && this.transform.localScale.x > 0)
+        {
+            this.transform.localScale = new Vector3(this.transform.localScale.x*-1, 1, 1);
+        }
+        else if(m_newDestination.x > this.transform.position.x && this.transform.localScale.x < 0)
+        {
+            this.transform.localScale = new Vector3(this.transform.localScale.x * -1, 1, 1);
+
+        }
+    }
+
+    private void ChangeAnimation()
+    {
+        switch(m_currentState)
+        {
+            case S_ActorState.Idle:
+                break;
+            case S_ActorState.MoveTowards:
+                break;
+            case S_ActorState.BullyActionIndividual:
+                break;
+            case S_ActorState.LookAtSmartphone:
+                break;
+            case S_ActorState.BullyActionGroupal:
+                break;
+        }
+    }
 }
