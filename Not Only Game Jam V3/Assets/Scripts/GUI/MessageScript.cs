@@ -55,7 +55,14 @@ public class MessageScript : MonoBehaviour {
 
             Debug.Log(currentText + " current");
 
-            
+        }
+
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
         }
     }
 
