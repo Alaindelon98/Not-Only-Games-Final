@@ -32,11 +32,13 @@ public class ScreenShot : MonoBehaviour
     private bool vAux_animation = false;
     private float vAux_normalScale;
 
+    private AudioSource mySource;
     
 
     private void Start()
     {
         vAux_normalScale = m_renderer.transform.localScale.x;
+        mySource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -62,6 +64,7 @@ public class ScreenShot : MonoBehaviour
         if (Input.GetButtonDown("TakePhoto") && !vAux_animation && !vAux_photoReady)
         {
             //call event detector to analize and act in consequence
+            mySource.Play();
             F_TakePhoto();
             eventDetector.F_Analize(m_mousePos);
         }
