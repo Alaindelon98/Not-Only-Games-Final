@@ -35,11 +35,26 @@ public class CommentsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("TakePhoto"))
-        {
-            
-            char charScene = '0';
+        
+    }
 
+    public void TakePhoto(bool isBoring, bool isPersonBoring)
+    {
+
+
+        char charScene = '0';
+
+
+        if (isPersonBoring)
+        {
+            charScene = '7';
+        }
+        else if (isBoring)
+        {
+
+        } 
+        else
+        {
             switch (gm.m_currentDay)
             {
                 case GameManager.S_Days.Beating: charScene = '6'; break;
@@ -47,11 +62,9 @@ public class CommentsManager : MonoBehaviour {
                 case GameManager.S_Days.FootTrip: charScene = '4'; break;
                 case GameManager.S_Days.Gone: charScene = '8'; break;
             }
-
-            SpawnComments(charScene);
         }
+        SpawnComments(charScene);
     }
-
 
     public void SpawnComments(char l_sceneChar)
     {

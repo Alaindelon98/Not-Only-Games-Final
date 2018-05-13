@@ -8,6 +8,11 @@ public class EventDetector : MonoBehaviour {
     [SerializeField] private John m_mainCharacter;
 
     public GameManager gm;
+    public bool isBoring;
+    public bool isPersonBoring;
+
+    public LikesFollowers likes;
+    public CommentsManager comments;
 
     // Use this for initialization
     void Start () {
@@ -35,27 +40,39 @@ public class EventDetector : MonoBehaviour {
 
         //Debug.Log(l_colliders[0].name);
 
-
+        isBoring = true;
+        isPersonBoring = false;
 
         foreach (Collider2D _collider in l_colliders)
         {
             if(_collider.tag == "MainCharacter")
             {
+                isPersonBoring = true;
                 //if (m_mainCharacter.m_currentState == S_JohnState.BullyAction && m_mainCharacter.m_sufferingBulling)
                 if (m_mainCharacter.m_sufferingBulling)
                 {
                     Debug.Log("being bullied, change day");
+                    isBoring = false; 
                     gm.ChangeGameState(GameManager.S_GameStates.ChangeDay);
                 }
+
+                
+
             }
             else if (_collider.tag == "Kid")
             {
-
+                isPersonBoring = true;
             }
             else if (_collider.tag == "Cat")
             {
 
             }
         }
+
+        comments.TakePhoto(isBoring, isPersonBoring);
+        likes.TakePhoto(isBoring, isPersonBoring);
+
+        Debug.Log("isBoring: " + isBoring);
+        Debug.Log("isPersonBoring: "+ isPersonBoring);
     }
 }

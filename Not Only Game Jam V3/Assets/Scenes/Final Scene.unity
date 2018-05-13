@@ -198,6 +198,11 @@ Prefab:
       propertyPath: gm
       value: 
       objectReference: {fileID: 355877605}
+    - target: {fileID: 114210630915432226, guid: 709d46a713a286d4f9f4cc173f784889,
+        type: 2}
+      propertyPath: ed
+      value: 
+      objectReference: {fileID: 355877607}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 709d46a713a286d4f9f4cc173f784889, type: 2}
   m_IsPrefabParent: 0
@@ -350,6 +355,11 @@ Prefab:
       propertyPath: m_waitingPoint
       value: 
       objectReference: {fileID: 1307619084}
+    - target: {fileID: 114348573139459516, guid: 1b62827099470ed4da54a069e2093104,
+        type: 2}
+      propertyPath: I_manager
+      value: 
+      objectReference: {fileID: 355877601}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b62827099470ed4da54a069e2093104, type: 2}
   m_IsPrefabParent: 0
@@ -364,6 +374,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 61595689}
   m_Script: {fileID: 11500000, guid: 6a1fbcd9c1a6cf34db0ad6321aa42283, type: 3}
+--- !u!114 &355877601 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114866795091580406, guid: 709d46a713a286d4f9f4cc173f784889,
+    type: 2}
+  m_PrefabInternal: {fileID: 61595689}
+  m_Script: {fileID: 11500000, guid: 98d8c6ae28b495243942893958e710c7, type: 3}
 --- !u!114 &355877602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +396,12 @@ MonoBehaviour:
   likesArray: 030000001d000000a8000000a8000000e3010000e30100007b0100000d000000
   followersArray: 0f0000002f0000006e0000006e0000007101000071010000a701000000000000
   gm: {fileID: 355877605}
+--- !u!114 &355877603 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114210630915432226, guid: 709d46a713a286d4f9f4cc173f784889,
+    type: 2}
+  m_PrefabInternal: {fileID: 61595689}
+  m_Script: {fileID: 11500000, guid: 22692a718b78b7c428f1885f2c32e734, type: 3}
 --- !u!114 &355877605 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114627890848593458, guid: 709d46a713a286d4f9f4cc173f784889,
@@ -400,7 +422,10 @@ MonoBehaviour:
   m_screenShot: {fileID: 1857423428}
   m_mainCharacter: {fileID: 1424985725}
   gm: {fileID: 355877605}
-  bullied: 1
+  isBoring: 0
+  isPersonBoring: 0
+  likes: {fileID: 355877602}
+  comments: {fileID: 355877603}
 --- !u!114 &428572066 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114348573139459516, guid: 1b62827099470ed4da54a069e2093104,
@@ -466,6 +491,11 @@ Prefab:
       propertyPath: m_waitingPoint
       value: 
       objectReference: {fileID: 1307619084}
+    - target: {fileID: 114453078812885970, guid: c00abb431a8e9894393fc42ffb7ba206,
+        type: 2}
+      propertyPath: I_manager
+      value: 
+      objectReference: {fileID: 355877601}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c00abb431a8e9894393fc42ffb7ba206, type: 2}
   m_IsPrefabParent: 0

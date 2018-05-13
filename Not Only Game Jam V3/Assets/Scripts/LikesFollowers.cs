@@ -33,9 +33,24 @@ public class LikesFollowers : MonoBehaviour
         //    likesText = 0;
         //}
         
-            if (Input.GetButtonDown("TakePhoto"))
-            {
+        
+            
 
+        
+    }
+
+    public void TakePhoto(bool isBoring, bool isPersonBoring) {
+        
+            if (isPersonBoring)
+            {
+                currentPhoto = 7;
+            }
+            else if (isBoring)
+            {
+                currentPhoto = 0;
+            }
+            else
+            {
                 switch (gm.m_currentDay)
                 {
                     case GameManager.S_Days.Beating: currentPhoto = 6; break;
@@ -43,13 +58,11 @@ public class LikesFollowers : MonoBehaviour
                     case GameManager.S_Days.FootTrip: currentPhoto = 4; break;
                     case GameManager.S_Days.Gone: currentPhoto = 8; break;
                 }
-                ChangePhotoText();
-
             }
-            
-
-        
+            ChangePhotoText();     
     }
+
+
 
     void ChangePhotoText()
     {
