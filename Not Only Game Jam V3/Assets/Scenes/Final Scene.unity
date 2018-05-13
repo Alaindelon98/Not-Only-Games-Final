@@ -193,6 +193,11 @@ Prefab:
       propertyPath: l_moveSpace
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114210630915432226, guid: 709d46a713a286d4f9f4cc173f784889,
+        type: 2}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 355877605}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 709d46a713a286d4f9f4cc173f784889, type: 2}
   m_IsPrefabParent: 0
@@ -374,6 +379,7 @@ MonoBehaviour:
   followersText: {fileID: 1079028479}
   likesArray: 030000001d000000a8000000a8000000e3010000e30100007b0100000d000000
   followersArray: 0f0000002f0000006e0000006e0000007101000071010000a701000000000000
+  gm: {fileID: 355877605}
 --- !u!114 &355877605 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114627890848593458, guid: 709d46a713a286d4f9f4cc173f784889,
@@ -393,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_screenShot: {fileID: 1857423428}
   m_mainCharacter: {fileID: 1424985725}
+  gm: {fileID: 355877605}
   bullied: 1
 --- !u!114 &428572066 stripped
 MonoBehaviour:

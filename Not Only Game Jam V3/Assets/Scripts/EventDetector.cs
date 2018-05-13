@@ -9,10 +9,6 @@ public class EventDetector : MonoBehaviour {
 
     public GameManager gm;
 
-    //TEMP TEMP TEMP
-    public bool bullied;
-    //END OF TEMP
-
     // Use this for initialization
     void Start () {
 		
@@ -37,7 +33,7 @@ public class EventDetector : MonoBehaviour {
         //sphere.transform.position = _position;
 
 
-        Debug.Log(l_colliders[0].name);
+        //Debug.Log(l_colliders[0].name);
 
 
 
@@ -46,7 +42,7 @@ public class EventDetector : MonoBehaviour {
             if(_collider.tag == "MainCharacter")
             {
                 //if (m_mainCharacter.m_currentState == S_JohnState.BullyAction && m_mainCharacter.m_sufferingBulling)
-                if (bullied)
+                if (m_mainCharacter.m_sufferingBulling)
                 {
                     Debug.Log("being bullied, change day");
                     gm.ChangeGameState(GameManager.S_GameStates.ChangeDay);

@@ -77,15 +77,28 @@ public class GameManager : MonoBehaviour {
 
                 //Exit playground
 
-                m_currentDay++;
+                if (m_currentDay == S_Days.Gone)
+                {
+                    ChangeGameState(S_GameStates.EndGame);                   
+                }
+                else
+                {
+                    m_currentDay++;
+                }
 
                 break;
 
             case S_GameStates.EndGame:
+                Invoke("EndGame", 5f);
                 break;
 
         }
 
+    }
+
+    public void EndGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsScene");
     }
 
     /*private void StateMachine()

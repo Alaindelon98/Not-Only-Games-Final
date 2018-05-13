@@ -8,6 +8,7 @@ public class Actor : MonoBehaviour {
 
     public Vector3 m_newDestination;
 
+    public bool m_isTheBully;
 
     [SerializeField] private Vector2 m_cooldownRandomRange;
     [SerializeField] private float m_speed;
@@ -29,19 +30,12 @@ public class Actor : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        ChangeState(S_ActorState.Walk);
     }
 	
 	// Update is called once per frame
 	void Update () {
         StateMachine();
-
-        if (Input.GetMouseButton(0))
-        {
-            print(m_currentState);
-            ChangeState(m_currentState, S_ActorState.LookAtSmartphone);
-        }
-
 
 	}
     private void StateMachine()
@@ -49,14 +43,18 @@ public class Actor : MonoBehaviour {
         switch (m_currentState)
         {
             case S_ActorState.Idle:
+                //if (I_gameManager.m_currentState == S_GameState.StartPlayGround)
+                //{
+                //    ChangeState(S_ActorState.Walk);
+                //}
                 break;
-            case S_ActorState.MoveTowards: //Characters walks around
+            case S_ActorState.Walk: //Characters walks around
 
                 if (m_newDestination != null)
                 {
                     Move();
                 }
-                if (this.transform.position == m_newDestination && this.transform.position != m_waitingPoint.position)
+                if (this.transform.position == m_newDestination)
                 //checks if has arrived to the destination and gives a new one unless it's resting
                 {
                     if (vAux_currentTime >= m_cooldownNewRandomPosition)
@@ -69,124 +67,78 @@ public class Actor : MonoBehaviour {
                     {
                         vAux_currentTime += Time.deltaTime;
                     }
-
+                     if(I_john.m_currentState == S_TommyState.Bullying && m_isTheBully)
+                    {
+                        ChangeState(S_ActorState.Bullying);
+                    }
                 }
 
 
                 break;
-            case S_ActorState.LookAtSmartPhone:
-                break;
-            case S_ActorState.BullyActionIndividual:
-                if (this.transform.position != m_newDestination)
+
+            case S_ActorState.Bullying:
+                if(Vector3.Distance(this.transform.position, I_john.transform.position) <= 1f)
                 {
-                    Move();
+                    //change animation
                 }
                 else
                 {
-                    if (I_john.m_currentAnimationIndex == (int)S_TommyAnimations.FoodTrap)
-                    {
-                        ChangeAnimation((int)S_ActorAnimations.FoodTrap);
-                    }
-                    else if (I_john.m_currentAnimationIndex == (int)S_TommyAnimations.Kick)
-                    {
-                        ChangeAnimation((int)S_ActorAnimations.Kick);
-                    }
-
-                    //DO ANIMATION
-                    //START ANIMATION OF THE PLAYER
-                }
-                break;
-            case S_ActorState.BullyActionGroupal:
-                if (this.transform.position != m_newDestination)
-                {
+                    m_newDestination = I_john.transform.position;
                     Move();
                 }
-                else
-                {
-                    ChangeAnimation((int)S_ActorAnimations.Fight);
-
-                }
-                break;
-            case S_ActorState.LookAtSmartphone:
-                //ANIMACION MIRAR AL TFNO
 
 
-                //QUAN SACABI LANIMACIO
-                if (!m_currentAnimation.isPlaying)
-                {
-                    ChangeState(m_currentState, S_ActorState.MoveTowards);
-                }
                 break;
 
 
         }
     }
 
-    public void ChangeState(S_ActorState currentState, S_ActorState nextState)
+
+    private void ChangeState(S_ActorState l_nextState)
     {
-        switch (currentState)
+        switch (m_currentState)
         {
             case S_ActorState.Idle:
-                switch (nextState)
+                switch (l_nextState)
                 {
-                    case S_ActorState.MoveTowards:
+                    case S_ActorState.Walk:
                         GetRandomDestination();
+                        m_currentState = l_nextState;
+                        break;
+                    case S_ActorState.Bullying:
+                        m_currentState = l_nextState;
                         break;
                 }
                 break;
-            case S_ActorState.MoveTowards:
-
-                vAux_currentTime = 0f;
-                switch (nextState)
+            case S_ActorState.Walk:
+                switch (l_nextState)
                 {
                     case S_ActorState.Idle:
+                        m_currentState = l_nextState;
                         break;
-                    case S_ActorState.RunAway:
-                        break;
-                    case S_ActorState.BullyActionIndividual:
-                        m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z);
-                        break;
-                    case S_ActorState.BullyActionGroupal:
-                        m_newDestination = new Vector3(I_john.transform.position.x, I_john.transform.position.y - 1, I_john.transform.position.z);
-                        break;
-                    case S_ActorState.LookAtSmartPhone:
-                        ChangeAnimation((int)S_ActorAnimations.LookAtSmartphones);
+                    case S_ActorState.Bullying:
+                        m_currentState = l_nextState;
                         break;
                 }
                 break;
-
-
-            case S_ActorState.BullyActionIndividual:
-                switch (nextState)
+            case S_ActorState.Bullying:
+                switch (l_nextState)
                 {
-                    case S_ActorState.RunAway:
+                    case S_ActorState.Idle:
+                        m_currentState = l_nextState;
                         break;
-                    case S_ActorState.MoveTowards:
-                        break;
-                }
-                break;
-            case S_ActorState.BullyActionGroupal:
-                switch (nextState)
-                {
-                    case S_ActorState.RunAway:
-                        break;
-                    case S_ActorState.MoveTowards:
-                        break;
-                }
-                break;
+                    case S_ActorState.Walk:
 
-            case S_ActorState.LookAtSmartphone:
-                switch (nextState)
-                {
-                    case S_ActorState.MoveTowards:
-                        m_newDestination = m_waitingPoint.position;
-                        print(m_waitingPoint);
+                        //decide which animation you have to take depending on the day
+
+                        m_currentState = l_nextState;
                         break;
                 }
                 break;
         }
-        m_currentState = nextState;
     }
+    
 
 
     private void GetRandomDestination() //gets random position and iterates again if its the same new destination of another actor or any actor is doing an action there
@@ -204,26 +156,12 @@ public class Actor : MonoBehaviour {
                 {
                     GetRandomDestination();
                 }
-                else if (actor.transform.position == m_newDestination)
-                {
-                    if (actor.m_currentState == S_ActorState.LookAtSmartPhone || actor.m_currentState == S_ActorState.BullyActionIndividual)
-                    {
-                        GetRandomDestination();
-                    }
-                }
             }
         }
 
         if (I_john.m_newDestination == l_node.position)
         {
             GetRandomDestination();
-        }
-        else if (I_john.transform.position == m_newDestination)
-        {
-            if (I_john.m_currentAnimState == S_TommyAnimations.DefaultAction || I_john.m_currentAnimState == S_TommyAnimations.BullyAction)
-            {
-                GetRandomDestination();
-            }
         }
 
         m_newDestination = l_node.position;
@@ -247,7 +185,7 @@ public class Actor : MonoBehaviour {
     private void ChangeAnimation(int index)
     {
         m_currentAnimationIndex = index;
-        m_currentAnimation.clip = m_animations[m_currentAnimationIndex];
+        //m_currentAnimation.clip = m_animations[m_currentAnimationIndex];
         m_currentAnimation.Play();
     }
 }
