@@ -1,0 +1,15 @@
+0 = Nothing
+
+1 = Cat
+
+2 = Fall
+
+3 = Food Mess
+
+4 = Foot Trip
+
+5 = Sandwich Throw
+
+6 = Beating
+
+7 = Normal Person
