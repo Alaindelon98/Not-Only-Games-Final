@@ -58,17 +58,27 @@ public class John : MonoBehaviour {
     private Animation m_currentAnimation;
 
 
+    bool isPlaying;
+
     // Use this for initialization
     void Start()
     {
         ChangeState(S_TommyState.Walk);
+
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space) && !isPlaying)
+        {
+            Debug.Log("PLAY AUDIO");
+            tensionAudio.Play();
+            StartCoroutine(UpVolume());
+            isPlaying = true;
+        }
         StateMachine();
     }
 
@@ -141,6 +151,8 @@ public class John : MonoBehaviour {
                 {
 
                     tensionAudio.Play();
+                    StartCoroutine(UpVolume());
+
                     m_groupOfActors.transform.position = Vector3.MoveTowards(m_groupOfActors.transform.position, m_waitingPoint.position, m_speed * Time.deltaTime);
                     if (m_groupOfActors.transform.position == this.transform.position)
                     {
@@ -308,4 +320,17 @@ public class John : MonoBehaviour {
     {
         m_pictureHasBeenTaken = true;
     }
+
+
+    IEnumerator UpVolume()
+    {
+        while (tensionAudio.volume < 1)
+        {
+            tensionAudio.volume += 0.1f;
+            Debug.Log(tensionAudio.volume);
+            yield return new WaitForSeconds(1);
+        }
+        yield break;
+    }
 }
+
