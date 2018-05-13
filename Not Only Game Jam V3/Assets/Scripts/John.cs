@@ -25,7 +25,21 @@ public class John : MonoBehaviour {
     [SerializeField] private Manager I_manager;
     [SerializeField] private Transform m_waitingPoint;
     [SerializeField] private TheGrid I_grid;
-    [SerializeField] private AnimationClip[] m_animations;
+    [SerializeField] private EventDetector I_eventDetector;
+
+    [SerializeField] private AnimationClip A_walk0;
+    [SerializeField] private AnimationClip A_walk1;
+    [SerializeField] private AnimationClip A_walk2;
+    [SerializeField] private AnimationClip A_idle0;
+    [SerializeField] private AnimationClip A_idle1;
+    [SerializeField] private AnimationClip A_idle2;
+    [SerializeField] private AnimationClip A_dirt;
+    [SerializeField] private AnimationClip A_fall;
+    [SerializeField] private AnimationClip A_foodTrap;
+    [SerializeField] private AnimationClip A_kick;
+    [SerializeField] private AnimationClip A_fight;
+
+
 
 
     public bool m_sufferingBulling = false;
@@ -81,10 +95,6 @@ public class John : MonoBehaviour {
                     }
                 }
 
-                if (this.transform.position == m_waitingPoint.transform.position)
-                {
-                    ChangeState(S_TommyState.Idle);
-                }
 
                 DecideAction();
 
@@ -97,11 +107,22 @@ public class John : MonoBehaviour {
                     ChangeState(S_TommyState.Walk);
                     m_pictureHasBeenTaken = false;
                 }
-                
 
 
-                if (true)//cambiar por dia
+
+                if ((int)I_gameManager.m_currentDay == 0)//cambiar por dia
                 {
+                    //animacion trabanqueta
+
+
+                }
+                else if((int)I_gameManager.m_currentDay == 1)
+                {
+                    //animacion 2
+                }
+                else if((int)I_gameManager.m_currentDay == 2)
+                {
+
                     m_groupOfActors.transform.position = Vector3.MoveTowards(m_groupOfActors.transform.position, m_waitingPoint.position, m_speed * Time.deltaTime);
                     if (m_groupOfActors.transform.position == this.transform.position)
                     {
@@ -201,7 +222,7 @@ public class John : MonoBehaviour {
     private void ChangeAnimation(int index)
     {
         m_currentAnimationIndex = index;
-        m_currentAnimation.clip = m_animations[m_currentAnimationIndex];
+        //m_currentAnimation.clip = m_animations[m_currentAnimationIndex];
         m_currentAnimation.Play();
 
     }
