@@ -29,13 +29,13 @@ public class CommentsManager : MonoBehaviour {
         i_readComments.ReadString();
         //SpawnComments('6');
         l_newLinesOcuped = 0;
+        currentPhoto = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Pressed");
             currentPhoto++;
             if (currentPhoto >= 8)
             {
@@ -46,14 +46,14 @@ public class CommentsManager : MonoBehaviour {
 
             switch (currentPhoto)
             {
-                case 0: currentPhoto = '0'; break;
-                case 1: currentPhoto = '1'; break;
-                case 2: currentPhoto = '2'; break;
-                case 3: currentPhoto = '3'; break;
-                case 4: currentPhoto = '4'; break;
-                case 5: currentPhoto = '5'; break;
-                case 6: currentPhoto = '6'; break;
-                case 7: currentPhoto = '7'; break;
+                case 0: charScene = '0'; break;
+                case 1: charScene = '1'; break;
+                case 2: charScene = '2'; break;
+                case 3: charScene = '3'; break;
+                case 4: charScene = '4'; break;
+                case 5: charScene = '5'; break;
+                case 6: charScene = '6'; break;
+                case 7: charScene = '7'; break;
 
             }
 
