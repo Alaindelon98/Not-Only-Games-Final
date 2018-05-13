@@ -1,13 +1,9 @@
 ﻿public enum S_ActorState
 {
+    Walk,
     Idle,
-    Patrol,
-    MoveTowards,
-    LookAtSmartPhone,
-    RunAway,
-    BullyActionIndividual,
-    BullyActionGroupal,
-    LookAtSmartphone,
+    Bullying
+
 }
 
 public enum S_ActorAnimations
@@ -51,7 +47,7 @@ public enum S_TommyState
     Bullying
 }
 
-/*public enum S_GameState
+public enum S_GameState
 {
     ExitPlayGround,
     StartPlayGround,
@@ -60,7 +56,7 @@ public enum S_TommyState
     EndGame,
     Tutorial
 
-}*/
+}
 public enum s_PhoneState
 {
     TakingPicture,

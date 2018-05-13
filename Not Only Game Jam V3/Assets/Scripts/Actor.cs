@@ -30,7 +30,7 @@ public class Actor : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        ChangeState(S_ActorState.Walk);
     }
 	
 	// Update is called once per frame
@@ -43,13 +43,10 @@ public class Actor : MonoBehaviour {
         switch (m_currentState)
         {
             case S_ActorState.Idle:
-                if (I_gameManager.m_currentState == S_GameState.StartPlayGround)
-                {
-
-
-
-                    ChangeState(S_ActorState.Walk);
-                }
+                //if (I_gameManager.m_currentState == S_GameState.StartPlayGround)
+                //{
+                //    ChangeState(S_ActorState.Walk);
+                //}
                 break;
             case S_ActorState.Walk: //Characters walks around
 
@@ -106,7 +103,7 @@ public class Actor : MonoBehaviour {
                 switch (l_nextState)
                 {
                     case S_ActorState.Walk:
-
+                        GetRandomDestination();
                         m_currentState = l_nextState;
                         break;
                     case S_ActorState.Bullying:

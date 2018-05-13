@@ -42,7 +42,7 @@ public class John : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        ChangeState(S_TommyState.Walk);
 
     }
 
@@ -58,19 +58,13 @@ public class John : MonoBehaviour {
         switch (m_currentState)
         {
             case S_TommyState.Idle:
-                if (I_gameManager.m_currentState == S_GameState.StartPlayGround)
-                {
-
-                    
-
-                    ChangeState(S_TommyState.Walk);
-                }
+                //if (I_gameManager.m_currentState == S_GameState.StartPlayGround)
+                //{
+                //    ChangeState(S_TommyState.Walk);
+                //}
                 break;
             case S_TommyState.Walk:
-                if (m_newDestination != null)
-                {
                     Move();
-                }
 
                 if (this.transform.position == m_newDestination)
                 //checks if has arrived to the destination and gives a new one unless it's resting
@@ -146,6 +140,7 @@ public class John : MonoBehaviour {
                         //{
 
                         //}
+                        GetRandomDestination();
                         m_currentState = l_nextState;
                         break;
                     case S_TommyState.Bullying:
@@ -197,13 +192,7 @@ public class John : MonoBehaviour {
                 {
                     GetRandomDestination();
                 }
-                else if (actor.transform.position == m_newDestination)
-                {
-                    if (actor.m_currentState == S_ActorState.LookAtSmartPhone || actor.m_currentState == S_ActorState.BullyActionIndividual)
-                    {
-                        GetRandomDestination();
-                    }
-                }
+                
             }
         }
 
