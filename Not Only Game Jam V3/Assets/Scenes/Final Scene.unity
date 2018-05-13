@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -380,6 +380,20 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 61595689}
   m_Script: {fileID: 11500000, guid: 52fb25f443a9e0a4dbb4964906629952, type: 3}
+--- !u!114 &355877607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 355877599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b81b32b2ab7274394119874d3d9f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_screenShot: {fileID: 1857423428}
+  m_mainCharacter: {fileID: 1424985725}
+  bullied: 1
 --- !u!114 &428572066 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114348573139459516, guid: 1b62827099470ed4da54a069e2093104,
@@ -498,6 +512,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114093444485003310, guid: 7bca48b21fba7684082333cf5780f321,
+        type: 2}
+      propertyPath: eventDetector
+      value: 
+      objectReference: {fileID: 355877607}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7bca48b21fba7684082333cf5780f321, type: 2}
   m_IsPrefabParent: 0
@@ -507,6 +526,79 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1332380631}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &1225795877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1225795878}
+  - component: {fileID: 1225795879}
+  m_Layer: 0
+  m_Name: Flash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1225795878
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1225795877}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.228, y: 0.156, z: 0}
+  m_LocalScale: {x: 0.4825518, y: 0.56571305, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2024527994}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1225795879
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1225795877}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3b0e439143fa55a478d8fe576196447c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.25, y: 2.25}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!224 &1276935379 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224411514413240778, guid: 16c707d27b991ba47a71cb9234012e27,
@@ -752,9 +844,20 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d03bdee803248814a9c8024315fc3a6f, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1857423428 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114093444485003310, guid: 7bca48b21fba7684082333cf5780f321,
+    type: 2}
+  m_PrefabInternal: {fileID: 1051383392}
+  m_Script: {fileID: 11500000, guid: 76398fb60afbc5746a4a788a5e6da561, type: 3}
 --- !u!114 &1894992501 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114480051792315334, guid: 16c707d27b991ba47a71cb9234012e27,
     type: 2}
   m_PrefabInternal: {fileID: 1332380631}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!4 &2024527994 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4230866033668970, guid: c00abb431a8e9894393fc42ffb7ba206,
+    type: 2}
+  m_PrefabInternal: {fileID: 737663607}

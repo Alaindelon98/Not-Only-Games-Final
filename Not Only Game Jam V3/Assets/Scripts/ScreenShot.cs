@@ -18,6 +18,10 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private Transform m_renderCamera;
     [SerializeField] private RenderTexture m_renderTexture;
 
+
+    //FGHJFGHJ
+    public EventDetector eventDetector;
+
     public Vector2Int m_photoSize = Vector2Int.zero;
 
     private Texture2D m_photo;
@@ -27,6 +31,8 @@ public class ScreenShot : MonoBehaviour
     private bool vAux_photoReady = false;
     private bool vAux_animation = false;
     private float vAux_normalScale;
+
+    
 
     private void Start()
     {
@@ -54,13 +60,17 @@ public class ScreenShot : MonoBehaviour
     private void LateUpdate()
     {
         if (Input.GetButtonDown("TakePhoto") && !vAux_animation && !vAux_photoReady)
+        {
+            //call event detector to analize and act in consequence
             F_TakePhoto();
+            eventDetector.F_Analize(m_mousePos);
+        }
 
         if (vAux_photoReady)
             F_ShowPhoto();
     }
 
-    private Vector2 F_GetRenderCameraOrthograficSize()
+    public Vector2 F_GetRenderCameraOrthograficSize()
     {
         Camera l_renderCamera = m_renderCamera.GetComponent<Camera>();
         float l_height = l_renderCamera.orthographicSize * 2;
