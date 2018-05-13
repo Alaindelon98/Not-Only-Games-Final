@@ -58,8 +58,6 @@ public class CommentsManager : MonoBehaviour {
             }
 
             SpawnComments(charScene);
-            Debug.Log("int " + currentPhoto);
-            Debug.Log(charScene);
         }
     }
 
@@ -68,7 +66,6 @@ public class CommentsManager : MonoBehaviour {
     {
         l_commentsList = i_readComments.GetComments(l_sceneChar);
         StartCoroutine(SpawnNextComment());
-        Debug.Log("comments list count: " + l_commentsList.Count);
 
     }
 
