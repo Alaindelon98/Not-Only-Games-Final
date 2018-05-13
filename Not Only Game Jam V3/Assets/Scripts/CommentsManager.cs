@@ -105,7 +105,6 @@ public class CommentsManager : MonoBehaviour {
 
                 if (l_spawnedList[i].transform.position.y < m_deathLine.position.y)
                 {
-                    Debug.Log("teleport dead");
                     l_spawnedList[i].transform.position = new Vector3(l_spawnedList[i].transform.position.x + 1000, l_spawnedList[i].transform.position.y - l_moveSpace, l_spawnedList[i].transform.position.z);
                     l_spawnedList.Remove(l_spawnedList[i]);
                 }

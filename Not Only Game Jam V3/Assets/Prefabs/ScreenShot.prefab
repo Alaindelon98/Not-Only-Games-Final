@@ -276,7 +276,7 @@ MonoBehaviour:
   m_flash: {fileID: 1302166484304776}
   m_scaleSocialMediaPhoto: 0.3
   m_socialMediaPhoto: {fileID: 4436502917025574}
-  m_speed: 3
+  m_speed: 6
   m_cameraFrame: {fileID: 1977175222466844}
   m_limitedArea:
     serializedVersion: 2
