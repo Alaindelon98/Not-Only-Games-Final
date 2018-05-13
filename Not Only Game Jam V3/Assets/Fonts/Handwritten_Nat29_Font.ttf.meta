@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 2b5f67e3697978e4f83e33f07b94d771
+timeCreated: 1526175931
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Handwritten Nat29 Font
+  fontNames:
+  - Handwritten Nat29 Font
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
