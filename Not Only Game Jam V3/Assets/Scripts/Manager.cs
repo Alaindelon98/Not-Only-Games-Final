@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Manager : MonoBehaviour {
+public class Manager : MonoBehaviour
+{
 
     public List<Actor> L_actors = new List<Actor>();
     public Cat I_cat;
@@ -12,21 +13,23 @@ public class Manager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void AllActorsLookAtSmartPhone()
     {
-        foreach(Actor actor in L_actors)
-            {
-                actor.ChangeState(actor.m_currentState, S_ActorState.LookAtSmartPhone);
-            }
+        foreach (Actor actor in L_actors)
+        {
+            actor.ChangeState(actor.m_currentState, S_ActorState.LookAtSmartPhone);
+        }
     }
 
     public void AllActorsGoPlayGround()
@@ -50,16 +53,16 @@ public class Manager : MonoBehaviour {
         Vector3 l_nearestPosition = Vector3.zero;
         Actor l_nearestActor;
 
-        foreach(Actor actor in L_actors)
+        foreach (Actor actor in L_actors)
         {
-            if(actor == L_actors[0])
+            if (actor == L_actors[0])
             {
                 l_nearestPosition = actor.transform.position;
                 l_nearestActor = actor;
             }
             else
             {
-                if(l_nearestPosition.magnitude > actor.transform.position.magnitude)
+                if (l_nearestPosition.magnitude > actor.transform.position.magnitude)
                 {
                     l_nearestPosition = actor.transform.position;
                     l_nearestActor = actor;
@@ -79,4 +82,6 @@ public class Manager : MonoBehaviour {
                 l_actor.ChangeState(l_actor.m_currentState, S_ActorState.BullyActionGroupal);
 
             }
+        }
+    }
 }

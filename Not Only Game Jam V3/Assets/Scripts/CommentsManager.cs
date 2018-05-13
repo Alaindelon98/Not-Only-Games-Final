@@ -90,6 +90,7 @@ public class CommentsManager : MonoBehaviour {
             Text newText = Instantiate(m_commentPrefab, m_canvas.transform);
             newText.text = l_commentsList[idx];
             Canvas.ForceUpdateCanvases();
+
             l_newLinesOcuped = newText.cachedTextGenerator.lines.Count;
             newText.transform.position = m_startLine.transform.position;
             l_spawnedList.Add(newText);
