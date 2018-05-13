@@ -12,7 +12,7 @@ public class LikesFollowers : MonoBehaviour
     int likesNum, followersNum;
 
     public int[] likesArray, followersArray;
-
+    public GameManager gm;
 
     int currentPhoto;
     void Start()
@@ -32,21 +32,27 @@ public class LikesFollowers : MonoBehaviour
         //{
         //    likesText = 0;
         //}
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentPhoto++;
-            if (currentPhoto >= likesArray.Length)
+        
+            if (Input.GetButtonDown("TakePhoto"))
             {
-                currentPhoto = 0;
-            }
-            ChangePhotoText();
 
-        }
+                switch (gm.m_currentDay)
+                {
+                    case GameManager.S_Days.Beating: currentPhoto = 6; break;
+                    case GameManager.S_Days.Fall: currentPhoto = 2; break;
+                    case GameManager.S_Days.FootTrip: currentPhoto = 4; break;
+                    case GameManager.S_Days.Gone: currentPhoto = 8; break;
+                }
+                ChangePhotoText();
+
+            }
+            
+
+        
     }
 
     void ChangePhotoText()
     {
-        Debug.Log("Current photo: " + currentPhoto);
         likesNum = 0;
         likesTarget = likesArray[currentPhoto] + Random.Range(0, 6);
         if (currentPhoto != 0 && currentPhoto != 7)
